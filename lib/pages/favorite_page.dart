@@ -13,7 +13,6 @@ class FavoritePage extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: box.listenable(),
       builder: (context, Box<Favorite> box, _) {
-
         if (box.isEmpty) {
           return const Center(
             child: Text("Belum ada favorit"),
@@ -32,6 +31,8 @@ class FavoritePage extends StatelessWidget {
           itemBuilder: (context, i) {
             final item = box.getAt(i);
 
+            if (item == null) return const SizedBox.shrink();
+
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -41,7 +42,6 @@ class FavoritePage extends StatelessWidget {
                   ),
                 );
               },
-
               child: Stack(
                 children: [
                   Container(
@@ -52,7 +52,7 @@ class FavoritePage extends StatelessWidget {
                         BoxShadow(
                           blurRadius: 5,
                           color: Colors.black12,
-                        )
+                        ),
                       ],
                     ),
                     child: Column(
@@ -63,13 +63,12 @@ class FavoritePage extends StatelessWidget {
                               top: Radius.circular(15),
                             ),
                             child: Image.network(
-                              item!.thumbnail,
+                              item.thumbnail,
                               fit: BoxFit.cover,
                               width: double.infinity,
                             ),
                           ),
                         ),
-
                         Padding(
                           padding: const EdgeInsets.all(8),
                           child: Text(
@@ -94,9 +93,9 @@ class FavoritePage extends StatelessWidget {
                           color: Colors.white,
                           shape: BoxShape.circle,
                         ),
-                        padding: const EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(6),
                         child: const Icon(
-                          Icons.close,
+                          Icons.favorite,
                           color: Colors.red,
                           size: 18,
                         ),

@@ -178,11 +178,13 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // HEADER
+        // HEADER ORANGE
         Container(
           width: double.infinity,
 
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.only(
+            bottom: 12,
+          ),
 
           decoration: const BoxDecoration(
             color: Colors.orange,
@@ -192,37 +194,11 @@ class _HomePageState extends State<HomePage> {
               bottomRight: Radius.circular(22),
             ),
           ),
-
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: [
-              Text(
-                "Temukan Resep Favoritmu 🍜",
-
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              SizedBox(height: 6),
-
-              Text(
-                "Pilih kategori makanan yang kamu suka",
-
-                style: TextStyle(
-                  color: Colors.white70,
-                ),
-              ),
-            ],
-          ),
         ),
 
-        const SizedBox(height: 18),
+        const SizedBox(height: 10),
 
-        // DROPDOWN
+        // DROPDOWN FILTER
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
 
@@ -262,7 +238,7 @@ class _HomePageState extends State<HomePage> {
 
         const SizedBox(height: 14),
 
-        // GRID
+        // GRID VIEW
         Expanded(
           child: FutureBuilder<List<Map<String, dynamic>>>(
             future: mealsFuture,
@@ -287,7 +263,7 @@ class _HomePageState extends State<HomePage> {
                 );
               }
 
-              // kosong
+              // data kosong
               if (!snapshot.hasData ||
                   snapshot.data!.isEmpty) {
                 return const Center(
